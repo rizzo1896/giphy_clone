@@ -1,2 +1,2 @@
 # giphy_clone
- Criando uma de Gifs para o Desafio Desenvolvimento Jovens Gênios
+ Criando uma pagina de Gifs para o Desafio Desenvolvimento Jovens Gênios
