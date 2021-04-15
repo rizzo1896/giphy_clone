@@ -1,12 +1,35 @@
-let qtd = 8
+// form param
+
+function findGetParameter(parameterName) {
+    var result = null,
+        tmp = [];
+    location.search
+        .substr(1)
+        .split("&")
+        .forEach(function (item) {
+            tmp = item.split("=");
+            if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+        });
+    return result;
+}
+
+// end
+document.querySelector('.search--title').style.fontSize = '30px'
+document.querySelector('.search--title').style.fontWeight = 'bold'
+// document.querySelector('.search--title').style.textTransform = 'uppercase'
+document.querySelector('.search--title').innerHTML = findGetParameter("search")
+
+let query = findGetParameter("search")
+
 let requestOptions = {
     method: 'GET',
 }
 
+let qtd = 8
 function img() {
-    const url_trending = `https://api.giphy.com/v1/gifs/trending?api_key=LLMSm65kdpzaKFPKScKupuZykbijQOUD&limit=${qtd}&rating=g`
+    let url_search = `https://api.giphy.com/v1/gifs/search?api_key=LLMSm65kdpzaKFPKScKupuZykbijQOUD&q=${query}&limit=${qtd}&offset=0&rating=g&lang=pt`
 
-    fetch(url_trending, requestOptions)
+    fetch(url_search, requestOptions)
         .then(response => response.json())
         .then(res => queryImg(res.data))
         .catch(error => console.log('Error: ' + error))
